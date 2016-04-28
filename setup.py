@@ -5,7 +5,7 @@ except ImportError:
 
 setup(
     name='chargehound',
-    version='1.0.1',
+    version='1.0.2',
     author='Chargehound',
     author_email='support@chargehound.com',
     packages=['chargehound'],
