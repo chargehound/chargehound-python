@@ -1,19 +1,20 @@
 import chargehound
 import requests_mock
 import unittest2
+from chargehound.version import VERSION
 
 
 get_headers = {
     'accept': 'application/json',
     'authorization': 'Basic QVBJX0tFWTo=',
-    'user-agent': 'Chargehound/v1 PythonBindings/1.0.0'
+    'user-agent': 'Chargehound/v1 PythonBindings/' + VERSION
 }
 
 post_headers = {
     'accept': 'application/json',
     'authorization': 'Basic QVBJX0tFWTo=',
     'content-type': 'application/json',
-    'user-agent': 'Chargehound/v1 PythonBindings/1.0.0'
+    'user-agent': 'Chargehound/v1 PythonBindings/' + VERSION
 }
 
 
