@@ -15,7 +15,7 @@ class Disputes(object):
     @classmethod
     def retrieve(klass, dispute_id, callback=None):
         requestor = APIRequestor()
-        return requestor.request('get', 'disputes/{}'.format(dispute_id),
+        return requestor.request('get', 'disputes/{0}'.format(dispute_id),
                                  callback=callback)
 
     """
@@ -74,7 +74,7 @@ class Disputes(object):
 
         requestor = APIRequestor()
         return requestor.request('post',
-                                 'disputes/{}/submit'.format(dispute_id),
+                                 'disputes/{0}/submit'.format(dispute_id),
                                  data=update,
                                  callback=callback)
 
@@ -101,6 +101,6 @@ class Disputes(object):
         update = kwargs
 
         requestor = APIRequestor()
-        return requestor.request('post', 'disputes/{}'.format(dispute_id),
+        return requestor.request('post', 'disputes/{0}'.format(dispute_id),
                                  data=update,
                                  callback=callback)
