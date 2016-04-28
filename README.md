@@ -1,8 +1,10 @@
-# Chargehound python bindings [![Build Status](https://travis-ci.org/chargehound/chargehound-python.svg?branch=master)](https://travis-ci.org/chargehound/chargehound-python)
+# Chargehound python bindings 
 
-<!-- ## Installation
+[![Build Status](https://travis-ci.org/chargehound/chargehound-python.svg?branch=master)](https://travis-ci.org/chargehound/chargehound-python) [![PyPI version](https://badge.fury.io/py/chargehound.svg)](https://badge.fury.io/py/chargehound)
 
-`pip install chargehound` -->
+## Installation
+
+`pip install chargehound`
 
 ## Usage
 
