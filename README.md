@@ -1,4 +1,4 @@
-# Chargehound python bindings [![Build Status](https://travis-ci.org/chargehound/chargehound-python.png?branch=master)](https://travis-ci.org/chargehound/chargehound-python)
+# Chargehound python bindings [![Build Status](https://travis-ci.org/chargehound/chargehound-python.svg?branch=master)](https://travis-ci.org/chargehound/chargehound-python)
 
 <!-- ## Installation
 
