@@ -27,6 +27,7 @@ class DisputeTest(unittest2.TestCase):
     @requests_mock.mock()
     def test_retrieve_dispute(self, mock):
         mock.get('https://api.chargehound.com/v1/disputes/dp_123',
+                 status_code=200,
                  request_headers=get_headers,
                  json={'id': 'dp_123'})
         chargehound.Disputes.retrieve('dp_123')
@@ -35,6 +36,7 @@ class DisputeTest(unittest2.TestCase):
     @requests_mock.mock()
     def test_list_all_disputes(self, mock):
         mock.get('https://api.chargehound.com/v1/disputes',
+                 status_code=200,
                  request_headers=get_headers,
                  json={'data': [{'id': 'dp_123'}]})
         chargehound.Disputes.list()
@@ -43,6 +45,7 @@ class DisputeTest(unittest2.TestCase):
     @requests_mock.mock()
     def test_submit_dispute(self, mock):
         mock.post('https://api.chargehound.com/v1/disputes/dp_123/submit',
+                  status_code=201,
                   json={'id': 'dp_123'})
         chargehound.Disputes.submit('dp_123',
                                     fields={'customer_name': 'Susie'})
@@ -53,6 +56,7 @@ class DisputeTest(unittest2.TestCase):
     @requests_mock.mock()
     def test_update_dispute(self, mock):
         mock.post('https://api.chargehound.com/v1/disputes/dp_123',
+                  status_code=200,
                   json={'id': 'dp_123'})
         chargehound.Disputes.update('dp_123',
                                     fields={'customer_name': 'Susie'})
