@@ -8,9 +8,9 @@ try:
     long_description = convert('README.md', 'rst')
 except:
     """
-    Don't fail if pandoc or pypandoc are not installed,
+    Don't fail if pandoc or pypandoc are not installed.
     However, it is better to publish the package with
-    formatted README.
+    a formatted README.
     """
     long_description = open('README.md').read()
 
