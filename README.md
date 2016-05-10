@@ -25,7 +25,7 @@ To build and install from the latest source:
 
 ```bash
 $ git clone git@github.com:chargehound/chargehound-python.git
-$ pip install -r requirements.txt
+$ pip install -r dev_requirements.txt
 ```
 
 Run tests:

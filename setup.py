@@ -4,9 +4,14 @@ except ImportError:
     from disutils.core import setup
 
 try:
-    import pypandoc
-    long_description = pypandoc.convert('README.md', 'rst')
-except(IOError, ImportError):
+    from pypandoc import convert
+    long_description = convert('README.md', 'rst')
+except:
+    """
+    Don't fail if pandoc or pypandoc are not installed,
+    However, it is better to publish the package with
+    formatted README.
+    """
     long_description = open('README.md').read()
 
 setup(
