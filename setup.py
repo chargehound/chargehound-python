@@ -11,7 +11,7 @@ except(IOError, ImportError):
 
 setup(
     name='chargehound',
-    version='1.0.3',
+    version='1.0.4',
     author='Chargehound',
     author_email='support@chargehound.com',
     packages=['chargehound'],
