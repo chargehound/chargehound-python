@@ -10,7 +10,7 @@ class APIRequestor(object):
 
     def parse_response(self, response):
         payload = response.json()
-        if response.status_code == 200:
+        if response.status_code < 400:
             return payload
         else:
             raise create_chargehound_error(payload)
