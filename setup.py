@@ -16,7 +16,7 @@ except:
 
 setup(
     name='chargehound',
-    version='1.0.4',
+    version='1.0.5',
     author='Chargehound',
     author_email='support@chargehound.com',
     packages=['chargehound'],
