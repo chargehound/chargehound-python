@@ -15,9 +15,11 @@ import chargehound
 chargehound.api_key = '{ YOUR_API_KEY }'
 ```
 
-## Resources
+## Documentation
 
 [Disputes](https://www.chargehound.com/docs/api/index.html?python#disputes)
+
+[Errors](https://www.chargehound.com/docs/api/index.html?python#errors)
 
 ## Development
 
