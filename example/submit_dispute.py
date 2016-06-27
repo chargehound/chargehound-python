@@ -34,4 +34,4 @@ submitted = chargehound.Disputes.submit(first['id'],
                                         fields={'customer_ip': '0.0.0.0'},
                                         products=products)
 
-print 'Submitted with fields: {0}'.format(submitted['fields'])
+print('Submitted with fields: {0}'.format(submitted['fields']))
