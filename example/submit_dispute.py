@@ -27,8 +27,7 @@ products = [{'name': 'Product Name 1',
              'sku': 'Stock Keeping Unit (optional)',
              'quantity': '10oz',
              'amount': 2000,
-             'url': 'Product URL (optional)',
-            }]
+             'url': 'Product URL (optional)'}]
 
 submitted = chargehound.Disputes.submit(first['id'],
                                         template='crowdfunding',
