@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 import chargehound
 import requests
-from chargehound.error import create_chargehound_error, create_timeout_error
+from chargehound.error import create_chargehound_error
 from chargehound.version import VERSION
 
 
@@ -39,25 +39,19 @@ class APIRequestor(object):
             hooks = None
 
         if method == 'get':
-            try:
-                return self.parse_response(requests.get(self.get_url(path),
-                                           auth=auth,
-                                           params=params,
-                                           headers=headers,
-                                           hooks=hooks,
-                                           timeout=chargehound.timeout))
-            except requests.exceptions.ReadTimeout:
-                create_timeout_error()
+            return self.parse_response(requests.get(self.get_url(path),
+                                       auth=auth,
+                                       params=params,
+                                       headers=headers,
+                                       hooks=hooks,
+                                       timeout=chargehound.timeout))
         elif method == 'post':
-            try:
-                return self.parse_response(requests.post(self.get_url(path),
-                                           auth=auth,
-                                           json=data,
-                                           headers=headers,
-                                           hooks=hooks,
-                                           timeout=chargehound.timeout))
-            except requests.exceptions.ReadTimeout:
-                create_timeout_error()
+            return self.parse_response(requests.post(self.get_url(path),
+                                       auth=auth,
+                                       json=data,
+                                       headers=headers,
+                                       hooks=hooks,
+                                       timeout=chargehound.timeout))
 
     def request(self, method, path, params=None, data=None, callback=None):
         if callback is None:
