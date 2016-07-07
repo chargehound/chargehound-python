@@ -12,6 +12,8 @@ class ChargehoundAuthenticationError(ChargehoundError):
 class ChargehoundBadRequestError(ChargehoundError):
     pass
 
+class ChargehoundTimeoutError(Exception):
+    pass
 
 def create_chargehound_error(error_response):
     error = error_response['error']
@@ -23,3 +25,6 @@ def create_chargehound_error(error_response):
         raise ChargehoundBadRequestError(error)
     else:
         raise ChargehoundError(error)
+
+def create_timeout_error():
+    raise ChargehoundTimeoutError('Connection timed out')

@@ -1,7 +1,12 @@
 import chargehound
 import requests_mock
 import unittest2
-from chargehound.error import ChargehoundBadRequestError, ChargehoundError
+import requests
+from mock import patch
+from chargehound.error import (
+    ChargehoundBadRequestError, ChargehoundError,
+    ChargehoundTimeoutError
+)
 
 
 class ErrorTest(unittest2.TestCase):
@@ -23,6 +28,13 @@ class ErrorTest(unittest2.TestCase):
         except ChargehoundBadRequestError as bad:
             assert bad.status == 400
             assert bad.message == 'Bad request.'
+
+    @patch('requests.get', side_effect=requests.exceptions.ReadTimeout())
+    def test_timeout(self, mock):
+        try:
+            chargehound.Disputes.list()
+        except ChargehoundTimeoutError as time:
+            assert time.message == 'Connection timed out'
 
     def test_propagate_errors(self):
         orig_host = chargehound.host
