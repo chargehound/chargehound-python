@@ -128,7 +128,6 @@ class DisputeTest(unittest2.TestCase):
         assert json_has_structure(response,
                                   {'fields': {'customer_name': 'Susie'}})
 
-
     @requests_mock.mock()
     def test_update_dispute_with_product_info(self, mock):
         mock.post('https://api.chargehound.com/v1/disputes/dp_123',
