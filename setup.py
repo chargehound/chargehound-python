@@ -14,9 +14,11 @@ except:
     """
     long_description = open('README.md').read()
 
+from chargehound.version import VERSION
+
 setup(
     name='chargehound',
-    version='1.1.0',
+    version=VERSION,
     author='Chargehound',
     author_email='support@chargehound.com',
     packages=['chargehound'],
