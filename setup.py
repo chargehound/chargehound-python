@@ -13,8 +13,8 @@ except:
     a formatted README.
     """
     print("""
-Warning: Missing pandoc, which is used to format \
-the README. Install pypandoc and pandoc before publishing \
+Warning: Missing pypandoc, which is used to format \
+the README. Install pypandoc before publishing \
 a new version.""")
     long_description = open('README.md').read()
 
