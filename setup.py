@@ -12,6 +12,10 @@ except:
     However, it is better to publish the package with
     a formatted README.
     """
+    print("""
+Warning: Missing pandoc, which is used to format \
+the README. Install pypandoc and pandoc before publishing \
+a new version.""")
     long_description = open('README.md').read()
 
 from chargehound.version import VERSION
