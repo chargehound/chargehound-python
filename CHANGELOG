@@ -2,3 +2,5 @@
   - Initial release with disputes API
 1.1.0 June, 2016
   - Added APIs to pass product lists
+1.1.1 July, 2016
+  - Included README in .rst format
