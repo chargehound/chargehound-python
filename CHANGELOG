@@ -4,3 +4,5 @@
   - Added APIs to pass product lists
 1.1.1 July, 2016
   - Included README in .rst format
+1.2.0 July, 2016
+  - Added timeout option

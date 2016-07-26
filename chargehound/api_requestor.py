@@ -43,13 +43,15 @@ class APIRequestor(object):
                                        auth=auth,
                                        params=params,
                                        headers=headers,
-                                       hooks=hooks))
+                                       hooks=hooks,
+                                       timeout=chargehound.timeout))
         elif method == 'post':
             return self.parse_response(requests.post(self.get_url(path),
                                        auth=auth,
                                        json=data,
                                        headers=headers,
-                                       hooks=hooks))
+                                       hooks=hooks,
+                                       timeout=chargehound.timeout))
 
     def request(self, method, path, params=None, data=None, callback=None):
         if callback is None:
