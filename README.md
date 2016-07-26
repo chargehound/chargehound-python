@@ -35,3 +35,23 @@ Run tests:
 ```bash
 $ python setup.py test
 ```
+
+## Deployment
+
+To deploy a new version of the SDK, you will need Pandoc (http://pandoc.org/) installed.
+Pandoc will convert the README.md into the .rst format required for the Python repository.
+Instructions are here: [http://pandoc.org/installing.html](http://pandoc.org/installing.html).
+
+Next, install PyPandoc, the Python wrapper for Pandoc, following [these instructions](https://pypi.python.org/pypi/pypandoc).
+ 
+The last pre-requisite is [Twine](https://pypi.python.org/pypi/twine), a utility for interacting with PyPi.
+
+Once Pandoc, PyPandoc and Twine are installed, you can build and deploy a new module to PyPi with the following steps:
+
+ 1. Update the CHANGELOG to describe what feature have been added.
+ 2. Bump the version number in `chargehound/version.py`
+ 3. Rebuild and deploy the package with:
+   ```python setup.py sdist```
+ 4. Upload the distributable to PyPi using:   
+   ```twine upload dist/{name_of_generated_package}```
+ 4. Confirm the new package version is available at [https://pypi.python.org/pypi/chargehound](https://pypi.python.org/pypi/chargehound)  

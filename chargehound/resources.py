@@ -58,6 +58,8 @@ class Disputes(object):
     :param str template: Set the template for this dispute. (optional)
     :param object fields:
         Key value pairs to hydrate the template's evidence fields. (optional)
+    :param object products:
+        List of products the customer purchased. (optional)
     :param str customer_name: Update the customer name.
         Will also update the customer name in the evidence fields. (optional)
     :param str customer_email:
@@ -86,6 +88,8 @@ class Disputes(object):
     :param str template: Set the template for this dispute. (optional)
     :param object fields:
         Key value pairs to hydrate the template's evidence fields. (optional)
+    :param object products:
+        List of products the customer purchased. (optional)
     :param str customer_name: Update the customer name.
         Will also update the customer name in the evidence fields. (optional)
     :param str customer_email:

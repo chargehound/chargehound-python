@@ -15,3 +15,6 @@
 nosetests.xml
 coverage.xml
 htmlcov/
+
+.idea/
+*.iml
