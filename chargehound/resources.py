@@ -60,11 +60,9 @@ class Disputes(object):
         Key value pairs to hydrate the template's evidence fields. (optional)
     :param object products:
         List of products the customer purchased. (optional)
-    :param str customer_name: Update the customer name.
-        Will also update the customer name in the evidence fields. (optional)
-    :param str customer_email:
-        Update the customer email. Will also update the customer email
-        in the evidence fields. Must be a valid email address. (optional)
+    :param str account_id: Set the associated Stripe account id. (optional)
+    :param bool force:
+        Bypass the manual review filter. (optional)
     :param callback function: The callback function
         to handle the response. (optional)
     :return: Dispute
@@ -90,11 +88,7 @@ class Disputes(object):
         Key value pairs to hydrate the template's evidence fields. (optional)
     :param object products:
         List of products the customer purchased. (optional)
-    :param str customer_name: Update the customer name.
-        Will also update the customer name in the evidence fields. (optional)
-    :param str customer_email:
-        Update the customer email. Will also update the customer email
-        in the evidence fields. Must be a valid email address. (optional)
+    :param str account_id: Set the associated Stripe account id. (optional)
     :param callback function: The callback function
         to handle the response. (optional)
     :return: Dispute
