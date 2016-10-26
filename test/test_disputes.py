@@ -58,6 +58,15 @@ class DisputeTest(unittest2.TestCase):
         chargehound.api_key = 'API_KEY'
 
     @requests_mock.mock()
+    def test_create_dispute(self, mock):
+        mock.post('https://api.chargehound.com/v1/disputes',
+                 status_code=200,
+                 request_headers=post_headers,
+                 json={'id': 'dp_123'})
+        chargehound.Disputes.create({'id': 'dp_123'})
+        assert mock.called
+
+    @requests_mock.mock()
     def test_retrieve_dispute(self, mock):
         mock.get('https://api.chargehound.com/v1/disputes/dp_123',
                  status_code=200,

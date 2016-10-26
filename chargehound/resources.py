@@ -2,21 +2,22 @@ from chargehound.api_requestor import APIRequestor
 
 
 class Disputes(object):
+    @classmethod
+    def create(klass, dispute_id, **kwargs):
+        requestor = APIRequestor()
+        return requestor.request('post', 'disputes', data=kwargs)
 
     """
     Retrieve a dispute
     This method will return a single dispute.
 
     :param str dispute_id: A dispute id (required)
-    :param callback function: The callback function
-        to handle the response. (optional)
     :return: Dispute
     """
     @classmethod
-    def retrieve(klass, dispute_id, callback=None):
+    def retrieve(klass, dispute_id):
         requestor = APIRequestor()
-        return requestor.request('get', 'disputes/{0}'.format(dispute_id),
-                                 callback=callback)
+        return requestor.request('get', 'disputes/{0}'.format(dispute_id))
 
     """
     A list of disputes
@@ -31,19 +32,15 @@ class Disputes(object):
         Fetch disputes created after this dispute. (optional)
     :param str ending_before: A dispute id.
         Fetch disputes created before this dispute. (optional)
-    :param callback function: The callback function
-        to handle the response. (optional)
     :return: Disputes
     """
     @classmethod
     def list(klass, **kwargs):
-        callback = kwargs.pop('callback', None)
         list_params = kwargs
 
         requestor = APIRequestor()
         return requestor.request('get', 'disputes',
-                                 params=list_params,
-                                 callback=callback)
+                                 params=list_params)
 
     """
     Submitting a dispute
@@ -63,20 +60,16 @@ class Disputes(object):
     :param str account_id: Set the associated Stripe account id. (optional)
     :param bool force:
         Bypass the manual review filter. (optional)
-    :param callback function: The callback function
-        to handle the response. (optional)
     :return: Dispute
     """
     @classmethod
     def submit(klass, dispute_id, **kwargs):
-        callback = kwargs.pop('callback', None)
         update = kwargs
 
         requestor = APIRequestor()
         return requestor.request('post',
                                  'disputes/{0}/submit'.format(dispute_id),
-                                 data=update,
-                                 callback=callback)
+                                 data=update)
 
     """
     Updating a dispute
@@ -89,16 +82,12 @@ class Disputes(object):
     :param object products:
         List of products the customer purchased. (optional)
     :param str account_id: Set the associated Stripe account id. (optional)
-    :param callback function: The callback function
-        to handle the response. (optional)
     :return: Dispute
     """
     @classmethod
     def update(klass, dispute_id, **kwargs):
-        callback = kwargs.pop('callback', None)
         update = kwargs
 
         requestor = APIRequestor()
         return requestor.request('post', 'disputes/{0}'.format(dispute_id),
-                                 data=update,
-                                 callback=callback)
+                                 data=update)
