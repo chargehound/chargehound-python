@@ -10,3 +10,4 @@
   - Remove callback option for requests
   - Add disputes create method
   - Expose response status code
+  - Add typed response models
