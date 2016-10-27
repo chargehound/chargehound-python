@@ -7,7 +7,8 @@ class Disputes(object):
     @classmethod
     def create(klass, dispute_id, **kwargs):
         params = kwargs.pop('query_params', None)
-        return requestor.request('post', 'disputes', data=kwargs, params=params)
+        return requestor.request('post', 'disputes',
+                                 data=kwargs, params=params)
 
     """
     Retrieve a dispute
