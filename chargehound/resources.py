@@ -1,10 +1,11 @@
 from chargehound.api_requestor import APIRequestor
 
+requestor = APIRequestor()
+
 
 class Disputes(object):
     @classmethod
     def create(klass, dispute_id, **kwargs):
-        requestor = APIRequestor()
         return requestor.request('post', 'disputes', data=kwargs)
 
     """
@@ -16,7 +17,6 @@ class Disputes(object):
     """
     @classmethod
     def retrieve(klass, dispute_id):
-        requestor = APIRequestor()
         return requestor.request('get', 'disputes/{0}'.format(dispute_id))
 
     """
@@ -38,7 +38,6 @@ class Disputes(object):
     def list(klass, **kwargs):
         list_params = kwargs
 
-        requestor = APIRequestor()
         return requestor.request('get', 'disputes',
                                  params=list_params)
 
@@ -66,7 +65,6 @@ class Disputes(object):
     def submit(klass, dispute_id, **kwargs):
         update = kwargs
 
-        requestor = APIRequestor()
         return requestor.request('post',
                                  'disputes/{0}/submit'.format(dispute_id),
                                  data=update)
@@ -88,6 +86,5 @@ class Disputes(object):
     def update(klass, dispute_id, **kwargs):
         update = kwargs
 
-        requestor = APIRequestor()
         return requestor.request('post', 'disputes/{0}'.format(dispute_id),
                                  data=update)
