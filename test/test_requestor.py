@@ -14,4 +14,4 @@ class ApiRequestorTest(unittest2.TestCase):
         mock.get('https://api.chargehound.com/v1/disputes/dp_123',
                  json={'id': 'dp_123'})
         dispute = chargehound.Disputes.retrieve('dp_123')
-        assert dispute['response']['status'] == 200
+        assert dispute.response.status == 200

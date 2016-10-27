@@ -4,6 +4,7 @@ import unittest2
 import json
 
 from chargehound.version import VERSION
+from chargehound.models import List, Dispute
 
 
 get_headers = {
@@ -34,6 +35,30 @@ product_info = [{'name': 'Saxophone',
                  'amount': 400,
                  'url': 'http://www.example.com'}]
 
+dispute_response = {
+  'id': 'dp_123',
+  'fields': {'customer_name': 'Susie'},
+  'products': [],
+  'object': 'dispute'
+}
+
+dispute_products_response = {
+  'id': 'dp_123',
+  'object': 'dispute',
+  'fields': {'customer_name': 'Susie'},
+  'products': product_info
+}
+
+dispute_list_response = {
+  'object': 'list',
+  'data': [{
+    'id': 'dp_123',
+    'fields': {'customer_name': 'Susie'},
+    'products': [],
+    'object': 'dispute'
+  }]
+}
+
 
 def is_json(response_body):
     """Can this HTTP response be parsed as JSON?"""
@@ -62,7 +87,7 @@ class DisputeTest(unittest2.TestCase):
         mock.post('https://api.chargehound.com/v1/disputes',
                   status_code=200,
                   request_headers=post_headers,
-                  json={'id': 'dp_123'})
+                  json=dispute_response)
         chargehound.Disputes.create({'id': 'dp_123'})
         assert mock.called
 
@@ -71,7 +96,7 @@ class DisputeTest(unittest2.TestCase):
         mock.get('https://api.chargehound.com/v1/disputes/dp_123',
                  status_code=200,
                  request_headers=get_headers,
-                 json={'id': 'dp_123'})
+                 json=dispute_response)
         chargehound.Disputes.retrieve('dp_123')
         assert mock.called
 
@@ -80,7 +105,7 @@ class DisputeTest(unittest2.TestCase):
         mock.get('https://api.chargehound.com/v1/disputes',
                  status_code=200,
                  request_headers=get_headers,
-                 json={'data': [{'id': 'dp_123'}]})
+                 json=dispute_list_response)
         chargehound.Disputes.list()
         assert mock.called
 
@@ -88,7 +113,7 @@ class DisputeTest(unittest2.TestCase):
     def test_submit_dispute(self, mock):
         mock.post('https://api.chargehound.com/v1/disputes/dp_123/submit',
                   status_code=201,
-                  json={'id': 'dp_123'})
+                  json=dispute_response)
         chargehound.Disputes.submit('dp_123',
                                     fields={'customer_name': 'Susie'})
 
@@ -105,7 +130,7 @@ class DisputeTest(unittest2.TestCase):
     def test_submit_dispute_with_product_info(self, mock):
         mock.post('https://api.chargehound.com/v1/disputes/dp_123/submit',
                   status_code=201,
-                  json={'id': 'dp_123'})
+                  json=dispute_products_response)
         chargehound.Disputes.submit('dp_123',
                                     fields={'customer_name': 'Susie'},
                                     products=product_info)
@@ -124,7 +149,7 @@ class DisputeTest(unittest2.TestCase):
     def test_update_dispute(self, mock):
         mock.post('https://api.chargehound.com/v1/disputes/dp_123',
                   status_code=200,
-                  json={'id': 'dp_123'})
+                  json=dispute_response)
         chargehound.Disputes.update('dp_123',
                                     fields={'customer_name': 'Susie'})
 
@@ -141,7 +166,7 @@ class DisputeTest(unittest2.TestCase):
     def test_update_dispute_with_product_info(self, mock):
         mock.post('https://api.chargehound.com/v1/disputes/dp_123',
                   status_code=200,
-                  json={'id': 'dp_123'})
+                  json=dispute_products_response)
         chargehound.Disputes.update('dp_123',
                                     fields={'customer_name': 'Susie'},
                                     products=product_info)
@@ -155,3 +180,37 @@ class DisputeTest(unittest2.TestCase):
         assert json_has_structure(response,
                                   {'fields': {'customer_name': 'Susie'},
                                    'products': product_info})
+
+    @requests_mock.mock()
+    def test_typed_responses(self, mock):
+        mock.get('https://api.chargehound.com/v1/disputes',
+                 status_code=200,
+                 request_headers=get_headers,
+                 json=dispute_list_response)
+        li = chargehound.Disputes.list()
+        assert mock.called
+        assert isinstance(li, List)
+        assert isinstance(li.data[0], Dispute)
+
+    @requests_mock.mock()
+    def test_typed_responses_can_be_jsonified(self, mock):
+        mock.get('https://api.chargehound.com/v1/disputes',
+                 status_code=200,
+                 request_headers=get_headers,
+                 json=dispute_list_response)
+        li = chargehound.Disputes.list()
+
+        response = {
+          'object': 'list',
+          'data': [{
+            'id': 'dp_123',
+            'fields': {'customer_name': 'Susie'},
+            'object': 'dispute',
+            'products': []
+          }],
+          'response': [200]
+        }
+
+        assert mock.called
+        assert json.dumps(response, sort_keys=True) \
+            == json.dumps(li, sort_keys=True)
