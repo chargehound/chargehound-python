@@ -6,9 +6,8 @@ requestor = APIRequestor()
 class Disputes(object):
     @classmethod
     def create(klass, dispute_id, **kwargs):
-        params = kwargs.pop('query_params', None)
         return requestor.request('post', 'disputes',
-                                 data=kwargs, params=params)
+                                 data=kwargs)
 
     """
     Retrieve a dispute
@@ -65,13 +64,11 @@ class Disputes(object):
     """
     @classmethod
     def submit(klass, dispute_id, **kwargs):
-        params = kwargs.pop('query_params', None)
         update = kwargs
 
         return requestor.request('post',
                                  'disputes/{0}/submit'.format(dispute_id),
-                                 data=update,
-                                 params=params)
+                                 data=update)
 
     """
     Updating a dispute
@@ -88,9 +85,7 @@ class Disputes(object):
     """
     @classmethod
     def update(klass, dispute_id, **kwargs):
-        params = kwargs.pop('query_params', None)
         update = kwargs
 
         return requestor.request('post', 'disputes/{0}'.format(dispute_id),
-                                 data=update,
-                                 params=params)
+                                 data=update)
