@@ -18,4 +18,8 @@ class Product(ChargehoundObject):
     pass
 
 
-Response = namedtuple('Response', 'status')
+class Response(ChargehoundObject):
+    pass
+
+
+HTTPResponse = namedtuple('HTTPResponse', 'status')

@@ -4,7 +4,7 @@ import unittest2
 import json
 
 from chargehound.version import VERSION
-from chargehound.models import List, Dispute
+from chargehound.models import List, Dispute, Response
 
 
 get_headers = {
@@ -59,6 +59,11 @@ dispute_list_response = {
   }]
 }
 
+response_response = {
+  'dispute_id': 'dp_123',
+  'object': 'response'
+}
+
 
 def is_json(response_body):
     """Can this HTTP response be parsed as JSON?"""
@@ -99,6 +104,18 @@ class DisputeTest(unittest2.TestCase):
                  json=dispute_response)
         chargehound.Disputes.retrieve('dp_123')
         assert mock.called
+
+    @requests_mock.mock()
+    def test_retrieve_dispute_response(self, mock):
+        mock.get('https://api.chargehound.com/v1/disputes/dp_123/response',
+                 status_code=200,
+                 request_headers=get_headers,
+                 json=response_response)
+        res = chargehound.Disputes.response('dp_123')
+
+        assert mock.called
+        assert isinstance(res, Response)
+        assert res.dispute_id == 'dp_123'
 
     @requests_mock.mock()
     def test_list_all_disputes(self, mock):

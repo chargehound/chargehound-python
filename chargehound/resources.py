@@ -27,6 +27,16 @@ class Disputes(object):
         return requestor.request('get', 'disputes/{0}'.format(dispute_id))
 
     """
+    Retrieve the response for a dispute.
+    :param str dispute_id: A dispute id (required)
+    :return: Dispute
+    """
+    @classmethod
+    def response(klass, dispute_id):
+        return requestor.request('get',
+                                 'disputes/{0}/response'.format(dispute_id))
+
+    """
     A list of disputes
     This method will list all the disputes that we have synced from Stripe.
     By default the disputes will be ordered by `created`

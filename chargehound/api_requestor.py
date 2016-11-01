@@ -5,7 +5,7 @@ import requests
 from chargehound.error import create_chargehound_error
 from chargehound.version import VERSION
 from chargehound.models import (
-    ChargehoundObject, List, Dispute, Product, Response
+    ChargehoundObject, List, Dispute, Product, Response, HTTPResponse
 )
 
 
@@ -17,6 +17,8 @@ class APIRequestor(object):
         elif obj.get('object') == 'list':
             obj['data'] = [self.convert(item) for item in obj['data']]
             return List(obj)
+        elif obj.get('object') == 'response':
+            return Response(obj)
         else:
             return ChargehoundObject(obj)
 
@@ -24,7 +26,7 @@ class APIRequestor(object):
         payload = response.json()
         if response.status_code < 400:
             model = self.convert(payload)
-            setattr(model, 'response', Response(response.status_code))
+            setattr(model, 'response', HTTPResponse(response.status_code))
             return model
         else:
             raise create_chargehound_error(payload)
