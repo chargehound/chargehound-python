@@ -32,7 +32,7 @@ Responses also include the HTTP status code on the response object as the status
 ```python
 dispute = chargehound.Disputes.retrieve('dp_123')
 
-print dispute.id
+print dispute.state
 # 'needs_response'
 print dispute.response.status
 # 200
