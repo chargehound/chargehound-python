@@ -15,6 +15,29 @@ import chargehound
 chargehound.api_key = '{ YOUR_API_KEY }'
 ```
 
+### Requests
+
+Every resource is accessed via the Chargehound module.
+
+```python
+dispute = chargehound.Disputes.submit('dp_123', fields={'customer_name': 'Susie'})
+```
+
+### Response
+
+Responses from the API are automatically parsed from JSON and returned as Python objects.
+
+Responses also include the HTTP status code on the response object as the status field.
+
+```python
+dispute = chargehound.Disputes.retrieve('dp_123')
+
+print dispute.state
+# 'needs_response'
+print dispute.response.status
+# 200
+```
+
 ## Documentation
 
 [Disputes](https://www.chargehound.com/docs/api/index.html?python#disputes)
@@ -54,4 +77,4 @@ Once Pandoc, PyPandoc and Twine are installed, you can build and deploy a new mo
    ```python setup.py sdist```
  4. Upload the distributable to PyPi using:   
    ```twine upload dist/{name_of_generated_package}```
- 4. Confirm the new package version is available at [https://pypi.python.org/pypi/chargehound](https://pypi.python.org/pypi/chargehound)  
+ 4. Confirm the new package version is available at [https://pypi.python.org/pypi/chargehound](https://pypi.python.org/pypi/chargehound)

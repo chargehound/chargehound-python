@@ -1,22 +1,40 @@
 from chargehound.api_requestor import APIRequestor
 
+requestor = APIRequestor()
+
 
 class Disputes(object):
+    """
+    Create a dispute
+    This method will return the created dispute.
+
+    :return: Dispute
+    """
+    @classmethod
+    def create(klass, dispute_id, **kwargs):
+        return requestor.request('post', 'disputes',
+                                 data=kwargs)
 
     """
     Retrieve a dispute
     This method will return a single dispute.
 
     :param str dispute_id: A dispute id (required)
-    :param callback function: The callback function
-        to handle the response. (optional)
     :return: Dispute
     """
     @classmethod
-    def retrieve(klass, dispute_id, callback=None):
-        requestor = APIRequestor()
-        return requestor.request('get', 'disputes/{0}'.format(dispute_id),
-                                 callback=callback)
+    def retrieve(klass, dispute_id):
+        return requestor.request('get', 'disputes/{0}'.format(dispute_id))
+
+    """
+    Retrieve the response for a dispute.
+    :param str dispute_id: A dispute id (required)
+    :return: Dispute
+    """
+    @classmethod
+    def response(klass, dispute_id):
+        return requestor.request('get',
+                                 'disputes/{0}/response'.format(dispute_id))
 
     """
     A list of disputes
@@ -24,26 +42,14 @@ class Disputes(object):
     By default the disputes will be ordered by `created`
     with the most recent dispute first.
     `has_more` will be `true` if more results are available.
-
-    :param int limit: Maximum number of disputes to return.
-        Default is 20, maximum is 100. (optional)
-    :param str starting_after: A dispute id.
-        Fetch disputes created after this dispute. (optional)
-    :param str ending_before: A dispute id.
-        Fetch disputes created before this dispute. (optional)
-    :param callback function: The callback function
-        to handle the response. (optional)
     :return: Disputes
     """
     @classmethod
     def list(klass, **kwargs):
-        callback = kwargs.pop('callback', None)
         list_params = kwargs
 
-        requestor = APIRequestor()
         return requestor.request('get', 'disputes',
-                                 params=list_params,
-                                 callback=callback)
+                                 params=list_params)
 
     """
     Submitting a dispute
@@ -55,50 +61,26 @@ class Disputes(object):
     The dispute will also be in the submitted state.
 
     :param str dispute_id: A dispute id (required)
-    :param str template: Set the template for this dispute. (optional)
-    :param object fields:
-        Key value pairs to hydrate the template's evidence fields. (optional)
-    :param object products:
-        List of products the customer purchased. (optional)
-    :param str account_id: Set the associated Stripe account id. (optional)
-    :param bool force:
-        Bypass the manual review filter. (optional)
-    :param callback function: The callback function
-        to handle the response. (optional)
     :return: Dispute
     """
     @classmethod
     def submit(klass, dispute_id, **kwargs):
-        callback = kwargs.pop('callback', None)
         update = kwargs
 
-        requestor = APIRequestor()
         return requestor.request('post',
                                  'disputes/{0}/submit'.format(dispute_id),
-                                 data=update,
-                                 callback=callback)
+                                 data=update)
 
     """
     Updating a dispute
     You can update the template and the fields on a dispute.
 
     :param str dispute_id: A dispute id (required)
-    :param str template: Set the template for this dispute. (optional)
-    :param object fields:
-        Key value pairs to hydrate the template's evidence fields. (optional)
-    :param object products:
-        List of products the customer purchased. (optional)
-    :param str account_id: Set the associated Stripe account id. (optional)
-    :param callback function: The callback function
-        to handle the response. (optional)
     :return: Dispute
     """
     @classmethod
     def update(klass, dispute_id, **kwargs):
-        callback = kwargs.pop('callback', None)
         update = kwargs
 
-        requestor = APIRequestor()
         return requestor.request('post', 'disputes/{0}'.format(dispute_id),
-                                 data=update,
-                                 callback=callback)
+                                 data=update)

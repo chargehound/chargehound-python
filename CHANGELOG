@@ -6,3 +6,9 @@
   - Included README in .rst format
 1.2.0 July, 2016
   - Added timeout option
+2.0.0 October, 2016
+  - Remove callback option for requests
+  - Add Dispute create method
+  - Add Dispute response retrieve method
+  - Expose response status codes
+  - Add typed response models

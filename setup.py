@@ -32,6 +32,7 @@ setup(
     license='MIT',
     test_suite='test.all',
     install_requires=[
-        'requests'
+        'requests',
+        'bunch'
         ],
     )
