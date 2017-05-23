@@ -1,8 +1,8 @@
 from collections import namedtuple
-from neobunch import NeoBunch
+from munch import Munch
 
 
-class ChargehoundObject(NeoBunch):
+class ChargehoundObject(Munch):
     pass
 
 
