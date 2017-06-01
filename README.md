@@ -61,8 +61,9 @@ $ python setup.py test
 
 ## Deployment
 
-If you added a new depency, make sure the change is reflected in the `requirements.txt` file and
-the `setup.py` file.
+If you added a new depency, make sure the change is reflected in the 
+`requirements.txt` file (for unit tests), the `dev_requirements.txt` file (for module publishers)
+and the `setup.py` file (for module consumers).
 
 To deploy a new version of the SDK, you will need Pandoc (http://pandoc.org/) installed.
 Pandoc will convert the README.md into the .rst format required for the Python repository.
