@@ -33,6 +33,6 @@ setup(
     test_suite='test.all',
     install_requires=[
         'requests',
-        'bunch'
+        'munch'
         ],
     )
