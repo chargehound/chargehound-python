@@ -18,11 +18,9 @@ the README. Install pypandoc before publishing \
 a new version.""")
     long_description = open('README.md').read()
 
-from chargehound.version import VERSION
-
 setup(
     name='chargehound',
-    version=VERSION,
+    version='2.1.2',
     author='Chargehound',
     author_email='support@chargehound.com',
     packages=['chargehound'],

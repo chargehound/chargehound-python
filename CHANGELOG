@@ -16,3 +16,5 @@
   - Replace NeoBunch library with Munch library. See https://pypi.python.org/pypi/munch/
 2.1.1 May, 2017
   - Add munch to requires
+2.1.2 May, 2017
+  - Do not import from chargehound before installing dependencies

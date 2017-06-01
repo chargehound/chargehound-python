@@ -76,7 +76,7 @@ The last pre-requisite is [Twine](https://pypi.python.org/pypi/twine), a utility
 Once Pandoc, PyPandoc and Twine are installed, you can build and deploy a new module to PyPi with the following steps:
 
  1. Update the CHANGELOG to describe what feature have been added.
- 2. Bump the version number in `chargehound/version.py`
+ 2. Bump the version number in `chargehound/version.py` and `setup.py`
  3. Rebuild and deploy the package with:
    ```python setup.py sdist```
  4. Upload the distributable to PyPi using:   
