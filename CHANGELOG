@@ -15,4 +15,4 @@
 2.1.0 May, 2017
   - Replace NeoBunch library with Munch library. See https://pypi.python.org/pypi/munch/
 2.1.1 May, 2017
-  - Add bunch to requires
+  - Add munch to requires
