@@ -37,6 +37,16 @@ class Disputes(object):
                                  'disputes/{0}/response'.format(dispute_id))
 
     """
+    Accept a dispute and do not submit a response.
+    :param str dispute_id: A dispute id (required)
+    :return: Dispute
+    """
+    @classmethod
+    def accept(klass, dispute_id):
+        return requestor.request('post',
+                                 'disputes/{0}/accept'.format(dispute_id))
+
+    """
     A list of disputes
     This method will list all the disputes that we have synced from Stripe.
     By default the disputes will be ordered by `created`
