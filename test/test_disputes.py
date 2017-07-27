@@ -231,3 +231,12 @@ class DisputeTest(unittest2.TestCase):
         assert mock.called
         assert json.dumps(response, sort_keys=True) \
             == json.dumps(li, sort_keys=True)
+
+    @requests_mock.mock()
+    def test_accept_dispute(self, mock):
+        mock.post('https://api.chargehound.com/v1/disputes/dp_123/accept',
+                  status_code=200,
+                  json=dispute_response)
+        chargehound.Disputes.accept('dp_123')
+
+        assert mock.called
