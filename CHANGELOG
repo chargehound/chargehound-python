@@ -20,3 +20,5 @@
   - Do not import from chargehound before installing dependencies
 2.2.0- July, 2017
   - Add Accept endpoint
+2.3.0- November, 2017
+  - Add support for overriding version

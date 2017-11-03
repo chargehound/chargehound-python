@@ -41,6 +41,9 @@ class APIRequestor(object):
             'user-agent': 'Chargehound/v1 PythonBindings/%s' % VERSION
         }
 
+        if chargehound.version:
+            headers['chargehound-version'] = chargehound.version
+
         auth = (chargehound.api_key, '')
 
         if method == 'get':
