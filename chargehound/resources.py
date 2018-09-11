@@ -48,7 +48,8 @@ class Disputes(object):
 
     """
     A list of disputes
-    This method will list all the disputes that we have synced from Stripe.
+    This method will list all the disputes that we have synced from
+    your payment processor.
     By default the disputes will be ordered by `created`
     with the most recent dispute first.
     `has_more` will be `true` if more results are available.
@@ -64,9 +65,9 @@ class Disputes(object):
     """
     Submitting a dispute
     You will want to submit the dispute through Chargehound after you recieve
-    a notification from Stripe of a new dispute.
+    a webhook notification of a new dispute.
     With one `POST` request you can update a dispute with the
-    evidence fields and send the generated response to Stripe.
+    evidence fields and submit generated response.
     The response will have a `201` status if the submit was successful.
     The dispute will also be in the submitted state.
 
