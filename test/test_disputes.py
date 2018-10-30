@@ -71,7 +71,6 @@ def is_json(response_body):
         json.loads(response_body)
         return True
     except:
-        print(response_body)
         return False
 
 
