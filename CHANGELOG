@@ -18,9 +18,11 @@
   - Add munch to requires
 2.1.2 May, 2017
   - Do not import from chargehound before installing dependencies
-2.2.0- July, 2017
+2.2.0 July, 2017
   - Add Accept endpoint
-2.3.0- November, 2017
+2.3.0 November, 2017
   - Add support for overriding version
-2.3.1- September, 2018
+2.3.1 September, 2018
   - Update docs
+2.3.2 October, 2018
+  - Upgrade requests dependency

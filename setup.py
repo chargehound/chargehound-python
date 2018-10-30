@@ -20,7 +20,7 @@ a new version.""")
 
 setup(
     name='chargehound',
-    version='2.3.1',
+    version='2.3.2',
     author='Chargehound',
     author_email='support@chargehound.com',
     packages=['chargehound'],
