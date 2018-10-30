@@ -139,9 +139,9 @@ class DisputeTest(unittest2.TestCase):
 
         response = mock.request_history[0].body
         try:
-          response = response.decode()
+            response = response.decode()
         except AttributeError:
-          pass
+            pass
 
         assert response
         assert is_json(response)
@@ -161,9 +161,9 @@ class DisputeTest(unittest2.TestCase):
 
         response = mock.request_history[0].body
         try:
-          response = response.decode()
+            response = response.decode()
         except AttributeError:
-          pass
+            pass
 
         assert response
         assert is_json(response)
@@ -183,9 +183,9 @@ class DisputeTest(unittest2.TestCase):
 
         response = mock.request_history[0].body
         try:
-          response = response.decode()
+            response = response.decode()
         except AttributeError:
-          pass
+            pass
 
         assert response
         assert is_json(response)
@@ -205,9 +205,9 @@ class DisputeTest(unittest2.TestCase):
 
         response = mock.request_history[0].body
         try:
-          response = response.decode()
+            response = response.decode()
         except AttributeError:
-          pass
+            pass
 
         assert response
         assert is_json(response)
