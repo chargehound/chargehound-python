@@ -4,4 +4,5 @@ pyopenssl==18.0.0
 pypandoc
 requests-mock==0.7.0
 requests>=2.20.0,<3
+setuptools>=18.5
 unittest2
