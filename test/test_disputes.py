@@ -127,6 +127,29 @@ class DisputeTest(unittest2.TestCase):
         assert mock.called
 
     @requests_mock.mock()
+    def test_list_disputes_filter_state(self, mock):
+        url = 'https://api.chargehound.com/v1/disputes?state=needs_response'
+        mock.get(url,
+                 status_code=200,
+                 request_headers=get_headers,
+                 json=dispute_list_response)
+        chargehound.Disputes.list(state='needs_response')
+        assert mock.called
+
+    @requests_mock.mock()
+    def test_list_disputes_filter_multiple_states(self, mock):
+        url = 'https://api.chargehound.com/v1/disputes' +\
+            '?state=needs_response&state=warning_needs_response'
+        mock.get(url,
+                 status_code=200,
+                 request_headers=get_headers,
+                 json=dispute_list_response)
+        chargehound.Disputes.list(
+          state=['needs_response', 'warning_needs_response']
+        )
+        assert mock.called
+
+    @requests_mock.mock()
     def test_submit_dispute(self, mock):
         mock.post('https://api.chargehound.com/v1/disputes/dp_123/submit',
                   status_code=201,
