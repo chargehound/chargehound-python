@@ -44,7 +44,7 @@ class APIRequestor(object):
         if chargehound.version:
             headers['chargehound-version'] = chargehound.version
 
-        auth = (chargehound.api_key, '')
+        auth = (chargehound.api_key or '', '')
 
         if method == 'get':
             return self.parse_response(requests.get(self.get_url(path),
