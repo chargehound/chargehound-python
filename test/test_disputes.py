@@ -36,15 +36,15 @@ product_info = [{'name': 'Saxophone',
                  'url': 'http://www.example.com'}]
 
 correspondence_info = [{'to': 'customer@example.com',
-                       'from': 'noreply@example.com',
-                       'subject': 'Your Order',
-                       'body': 'Your order was received.',
-                       'caption': 'Order confirmation email.' },
-                      {'to': 'customer@example.com',
-                       'from': 'noreply@example.com',
-                       'subject': 'Your Order',
-                       'body': 'Your order was delivered.',
-                       'caption': 'Delivery confirmation email.'}]
+                        'from': 'noreply@example.com',
+                        'subject': 'Your Order',
+                        'body': 'Your order was received.',
+                        'caption': 'Order confirmation email.'},
+                       {'to': 'customer@example.com',
+                        'from': 'noreply@example.com',
+                        'subject': 'Your Order',
+                        'body': 'Your order was delivered.',
+                        'caption': 'Delivery confirmation email.'}]
 
 dispute_response = {
   'id': 'dp_123',
