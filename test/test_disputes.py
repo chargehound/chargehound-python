@@ -35,6 +35,17 @@ product_info = [{'name': 'Saxophone',
                  'amount': 400,
                  'url': 'http://www.example.com'}]
 
+correspondence_info = [{'to': 'customer@example.com',
+                        'from': 'noreply@example.com',
+                        'subject': 'Your Order',
+                        'body': 'Your order was received.',
+                        'caption': 'Order confirmation email.'},
+                       {'to': 'customer@example.com',
+                        'from': 'noreply@example.com',
+                        'subject': 'Your Order',
+                        'body': 'Your order was delivered.',
+                        'caption': 'Delivery confirmation email.'}]
+
 dispute_response = {
   'id': 'dp_123',
   'fields': {'customer_name': 'Susie'},
@@ -47,6 +58,13 @@ dispute_products_response = {
   'object': 'dispute',
   'fields': {'customer_name': 'Susie'},
   'products': product_info
+}
+
+dispute_correspondence_response = {
+  'id': 'dp_123',
+  'object': 'dispute',
+  'fields': {'customer_name': 'Susie'},
+  'products': correspondence_info
 }
 
 dispute_list_response = {
@@ -194,6 +212,29 @@ class DisputeTest(unittest2.TestCase):
                                    'products': product_info})
 
     @requests_mock.mock()
+    def test_submit_dispute_with_correspondence_info(self, mock):
+        mock.post('https://api.chargehound.com/v1/disputes/dp_123/submit',
+                  status_code=201,
+                  json=dispute_correspondence_response)
+        chargehound.Disputes.submit('dp_123',
+                                    fields={'customer_name': 'Susie'},
+                                    correspondence=correspondence_info)
+
+        assert mock.called
+
+        response = mock.request_history[0].body
+        try:
+            response = response.decode()
+        except AttributeError:
+            pass
+
+        assert response
+        assert is_json(response)
+        assert json_has_structure(response,
+                                  {'fields': {'customer_name': 'Susie'},
+                                   'correspondence': correspondence_info})
+
+    @requests_mock.mock()
     def test_update_dispute(self, mock):
         mock.post('https://api.chargehound.com/v1/disputes/dp_123',
                   status_code=200,
@@ -236,6 +277,29 @@ class DisputeTest(unittest2.TestCase):
         assert json_has_structure(response,
                                   {'fields': {'customer_name': 'Susie'},
                                    'products': product_info})
+
+    @requests_mock.mock()
+    def test_update_dispute_with_correspondence_info(self, mock):
+        mock.post('https://api.chargehound.com/v1/disputes/dp_123',
+                  status_code=200,
+                  json=dispute_correspondence_response)
+        chargehound.Disputes.update('dp_123',
+                                    fields={'customer_name': 'Susie'},
+                                    correspondence=correspondence_info)
+
+        assert mock.called
+
+        response = mock.request_history[0].body
+        try:
+            response = response.decode()
+        except AttributeError:
+            pass
+
+        assert response
+        assert is_json(response)
+        assert json_has_structure(response,
+                                  {'fields': {'customer_name': 'Susie'},
+                                   'correspondence': correspondence_info})
 
     @requests_mock.mock()
     def test_typed_responses(self, mock):
