@@ -47,13 +47,13 @@ correspondence_info = [{'to': 'customer@example.com',
                         'caption': 'Delivery confirmation email.'}]
 
 past_payments_info = [{'id': 'ch_1',
-                        'amount': 20000,
-                        'currency': 'usd',
-                        'charged_at': '2019-09-10 11:09:41PM UTC'},
+                       'amount': 20000,
+                       'currency': 'usd',
+                       'charged_at': '2019-09-10 11:09:41PM UTC'},
                       {'id': 'ch_2',
-                        'amount': 50000,
-                        'currency': 'usd',
-                        'charged_at': '2019-09-03 11:09:41PM UTC'}]
+                       'amount': 50000,
+                       'currency': 'usd',
+                       'charged_at': '2019-09-03 11:09:41PM UTC'}]
 
 dispute_response = {
   'id': 'dp_123',

@@ -21,8 +21,10 @@ class Product(ChargehoundObject):
 class Response(ChargehoundObject):
     pass
 
+
 class CorrespondenceItem(ChargehoundObject):
     pass
+
 
 class PastPayment(ChargehoundObject):
     pass
