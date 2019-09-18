@@ -32,7 +32,11 @@ class APIRequestor(object):
             raise create_chargehound_error(payload)
 
     def get_url(self, path):
-        return 'https://' + chargehound.host + chargehound.base_path + path
+        url = chargehound.protocol + chargehound.host
+        if chargehound.port:
+            url += ':' + chargehound.port
+        url += chargehound.base_path + path
+        return url
 
     def make_request(self, method, path, params=None, data=None,
                      callback=None):
