@@ -5,14 +5,16 @@ import requests
 from chargehound.error import create_chargehound_error
 from chargehound.version import VERSION
 from chargehound.models import (
-    ChargehoundObject, List, Dispute, Product, Response, HTTPResponse
+    ChargehoundObject, List, Dispute, Product, PastPayment, CorrespondenceItem, Response, HTTPResponse
 )
 
 
 class APIRequestor(object):
     def convert(self, obj):
         if obj.get('object') == 'dispute':
-            obj['products'] = [Product(item) for item in obj['products']]
+            obj['products'] = [Product(item) for item in obj.get('products', [])]
+            obj['past_payments'] = [PastPayment(item) for item in obj.get('past_payments', [])]
+            obj['correspondence'] = [CorrespondenceItem(item) for item in obj.get('correspondence', [])]
             return Dispute(obj)
         elif obj.get('object') == 'list':
             obj['data'] = [self.convert(item) for item in obj['data']]
