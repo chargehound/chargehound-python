@@ -11,7 +11,7 @@ class Disputes(object):
     :return: Dispute
     """
     @classmethod
-    def create(klass, dispute_id, **kwargs):
+    def create(cls, dispute_id, **kwargs):
         return requestor.request('post', 'disputes',
                                  data=kwargs)
 
@@ -23,7 +23,7 @@ class Disputes(object):
     :return: Dispute
     """
     @classmethod
-    def retrieve(klass, dispute_id):
+    def retrieve(cls, dispute_id):
         return requestor.request('get', 'disputes/{0}'.format(dispute_id))
 
     """
@@ -32,7 +32,7 @@ class Disputes(object):
     :return: Dispute
     """
     @classmethod
-    def response(klass, dispute_id):
+    def response(cls, dispute_id):
         return requestor.request('get',
                                  'disputes/{0}/response'.format(dispute_id))
 
@@ -42,7 +42,7 @@ class Disputes(object):
     :return: Dispute
     """
     @classmethod
-    def accept(klass, dispute_id):
+    def accept(cls, dispute_id):
         return requestor.request('post',
                                  'disputes/{0}/accept'.format(dispute_id))
 
@@ -56,7 +56,7 @@ class Disputes(object):
     :return: Disputes
     """
     @classmethod
-    def list(klass, **kwargs):
+    def list(cls, **kwargs):
         list_params = kwargs
 
         return requestor.request('get', 'disputes',
@@ -75,7 +75,7 @@ class Disputes(object):
     :return: Dispute
     """
     @classmethod
-    def submit(klass, dispute_id, **kwargs):
+    def submit(cls, dispute_id, **kwargs):
         update = kwargs
 
         return requestor.request('post',
@@ -90,7 +90,7 @@ class Disputes(object):
     :return: Dispute
     """
     @classmethod
-    def update(klass, dispute_id, **kwargs):
+    def update(cls, dispute_id, **kwargs):
         update = kwargs
 
         return requestor.request('post', 'disputes/{0}'.format(dispute_id),

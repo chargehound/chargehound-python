@@ -26,3 +26,6 @@
   - Update docs
 2.3.2 October, 2018
   - Upgrade requests dependency
+2.4.0 Sept, 2019
+  - Add tests for past payments
+  - Allow setting of host port and protocol

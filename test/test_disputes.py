@@ -46,10 +46,21 @@ correspondence_info = [{'to': 'customer@example.com',
                         'body': 'Your order was delivered.',
                         'caption': 'Delivery confirmation email.'}]
 
+past_payments_info = [{'id': 'ch_1',
+                       'amount': 20000,
+                       'currency': 'usd',
+                       'charged_at': '2019-09-10 11:09:41PM UTC'},
+                      {'id': 'ch_2',
+                       'amount': 50000,
+                       'currency': 'usd',
+                       'charged_at': '2019-09-03 11:09:41PM UTC'}]
+
 dispute_response = {
   'id': 'dp_123',
   'fields': {'customer_name': 'Susie'},
   'products': [],
+  'correspondence': [],
+  'past_payments': [],
   'object': 'dispute'
 }
 
@@ -57,14 +68,27 @@ dispute_products_response = {
   'id': 'dp_123',
   'object': 'dispute',
   'fields': {'customer_name': 'Susie'},
-  'products': product_info
+  'products': product_info,
+  'correspondence': [],
+  'past_payments': [],
 }
 
 dispute_correspondence_response = {
   'id': 'dp_123',
   'object': 'dispute',
   'fields': {'customer_name': 'Susie'},
-  'products': correspondence_info
+  'correspondence': correspondence_info,
+  'products': [],
+  'past_payments': [],
+}
+
+dispute_past_payments_response = {
+  'id': 'dp_123',
+  'object': 'dispute',
+  'fields': {'customer_name': 'Susie'},
+  'past_payments': past_payments_info,
+  'correspondence': [],
+  'products': [],
 }
 
 dispute_list_response = {
@@ -73,6 +97,8 @@ dispute_list_response = {
     'id': 'dp_123',
     'fields': {'customer_name': 'Susie'},
     'products': [],
+    'correspondence': [],
+    'past_payments': [],
     'object': 'dispute'
   }]
 }
@@ -235,6 +261,29 @@ class DisputeTest(unittest2.TestCase):
                                    'correspondence': correspondence_info})
 
     @requests_mock.mock()
+    def test_submit_dispute_with_past_payments_info(self, mock):
+        mock.post('https://api.chargehound.com/v1/disputes/dp_123/submit',
+                  status_code=201,
+                  json=dispute_past_payments_response)
+        chargehound.Disputes.submit('dp_123',
+                                    fields={'customer_name': 'Susie'},
+                                    past_payments=past_payments_info)
+
+        assert mock.called
+
+        response = mock.request_history[0].body
+        try:
+            response = response.decode()
+        except AttributeError:
+            pass
+
+        assert response
+        assert is_json(response)
+        assert json_has_structure(response,
+                                  {'fields': {'customer_name': 'Susie'},
+                                   'past_payments': past_payments_info})
+
+    @requests_mock.mock()
     def test_update_dispute(self, mock):
         mock.post('https://api.chargehound.com/v1/disputes/dp_123',
                   status_code=200,
@@ -326,7 +375,9 @@ class DisputeTest(unittest2.TestCase):
             'id': 'dp_123',
             'fields': {'customer_name': 'Susie'},
             'object': 'dispute',
-            'products': []
+            'products': [],
+            'past_payments': [],
+            'correspondence': []
           }],
           'response': [200]
         }
