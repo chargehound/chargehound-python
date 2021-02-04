@@ -29,7 +29,11 @@ class ErrorTest(unittest2.TestCase):
         mock.post('https://api.chargehound.com/v1/disputes/dp_123/submit',
                   status_code=400,
                   json={
-                    'error': {'status': 400, 'message': 'Bad request.', 'type': 'invalid_request'}
+                    'error': {
+                        'status': 400,
+                        'message': 'Bad request.',
+                        'type': 'invalid_request'
+                    }
                   })
 
         try:
