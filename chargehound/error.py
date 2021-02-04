@@ -3,6 +3,7 @@ class ChargehoundError(Exception):
         super(ChargehoundError, self).__init__(error_response['message'])
         self.status = error_response['status']
         self.message = error_response['message']
+        self.type = error_response.get('type')
 
 
 class ChargehoundAuthenticationError(ChargehoundError):
