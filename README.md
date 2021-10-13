@@ -1,6 +1,6 @@
 # Chargehound python bindings 
 
-[![Build Status](https://travis-ci.org/chargehound/chargehound-python.svg?branch=master)](https://travis-ci.org/chargehound/chargehound-python) [![PyPI version](https://badge.fury.io/py/chargehound.svg)](https://badge.fury.io/py/chargehound)
+[![Build Status](https://github.com/chargehound/chargehound-python/actions/workflows/python.yaml/badge.svg)](https://github.com/chargehound/chargehound-python/actions/workflows/python.yaml) [![PyPI version](https://badge.fury.io/py/chargehound.svg)](https://badge.fury.io/py/chargehound)
 
 ## Installation
 

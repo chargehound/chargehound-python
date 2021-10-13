@@ -6,7 +6,7 @@ except ImportError:
 try:
     from pypandoc import convert
     long_description = convert('README.md', 'rst')
-except:
+except Exception:
     """
     Don't fail if pandoc or pypandoc are not installed.
     However, it is better to publish the package with

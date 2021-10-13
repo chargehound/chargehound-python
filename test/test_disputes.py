@@ -114,7 +114,7 @@ def is_json(response_body):
     try:
         json.loads(response_body)
         return True
-    except:
+    except Exception:
         return False
 
 

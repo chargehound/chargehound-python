@@ -1,4 +1,4 @@
-flake8==2.6.2
+flake8
 munch==2.1.1
 requests-mock==0.7.0
 requests>=2.20.0,<3
