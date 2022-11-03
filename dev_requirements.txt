@@ -5,3 +5,4 @@ pypandoc
 requests-mock==0.7.0
 requests>=2.20.0,<3
 unittest2
+wheel>=0.38.0 # not directly required, pinned by Snyk to avoid a vulnerability
