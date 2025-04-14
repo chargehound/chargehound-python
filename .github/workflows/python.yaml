@@ -8,10 +8,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     strategy:
       matrix:
-        python: [ 'pypy3', 3.5.10, 3.6, 3.7, 3.8, 3.9]
+        python: [ 'pypy3', 2.7, 3.5, 3.6, 3.7, 3.8, 3.9]
     name: Test Python ${{ matrix.python }}
     steps:
       - uses: actions/checkout@v2
